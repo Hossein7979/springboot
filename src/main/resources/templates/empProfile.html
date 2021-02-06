@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html">
+    <meta charset="UTF-8">
+    <title>employe profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div >
+    <div class="row">
+        <div class="col-lg-9 mt-5">
+            <div class="card ml-4" align="center">
+                <div class="card-header"><h4 class="text-info">Employee Information</h4></div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table table-hover table-striped "  ><!--classess:table_hover:vagti miri rosh highlight mishe
+table_striped:rang ha ye dar miyoon avaz mishan_va table-color color kolle table-->
+                            <thead class="thead-dark"><!--color of head row-->
+                            <tr class="table-warning"><!--color satr-->
+                                <th>نام و نام خانوادگی</th>
+                                <th>نام کاربری</th>
+                                <th>شماره کارمندی</th>
+                                <th>اخرین زمان ورود</th>
+                                <th>آخرین زمان خروج</th>
+                                <th>تاریخ روز</th>
+                            </tr>
+                            </thead>
+                            <tbody th:object="${profile}">
+                            <tr class="table-info"style="height: 75px;">
+                                <th  th:text="*{name}"></th>
+                                <th th:text="*{username}"></th>
+                                <th th:text="*{employeeCode}"></th>
+                                <th th:text="${lastseen}"></th>
+                                <th th:text="*{lastTimeOfExit}"></th>
+                                <th th:text="${dateofday}"></th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3"align="right" >
+            <div  class="list-group list-group-primary"style=" width: 140px;">
+                <a class=" btn list-group-item list-group-item-success action text-dark" style="direction: ltr" th:href="@{/clock}">ثبت حضور</a>
+                <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/leave}">درخواست مرخصی</a>
+                <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/edit}">ویرایش اطلاعات</a>
+                <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/index}">خروج</a>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron jumbotron-responsive mx-auto"align="center"style="margin-top: 130px;">
+        <div style="margin-left: 450px;" align="center">
+            <ul class="pagination mb-3"align="center">
+                <li class="page-item"><a class="page-link" href="/login">previous</a></li>
+                <li class="page-item"><a class="page-link enable"  href="/profile">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

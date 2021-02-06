@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<headc th:replace="head.html">
+    <meta charset="UTF-8">
+    <title>leave</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</headc>
+<body>
+<div class="row">
+    <div class="col-lg-9 mt-5">
+        <div align="center">
+            <form class="mx-auto "th:action="@{/leave}" method="post"th:object="${leavingField}" style="margin-left: 10px;width: 600px;">
+                <div class="card">
+                    <div class="card-header"><h4 class="text-primary">فرم درخواست مرخصی</h4></div>
+                    <div class="card-body form-group">
+                        <div> <input class="form-controller" type="text" required placeholder="نوع مرخصی" th:field="*{typeOfRequest}"></div><br>
+                        <div> <input class="form-controller" type="number" required placeholder="تعداد روز های درخواستی" th:field="*{daysOfRequestedFree}"></div><br>
+                        <div> <input class="form-controller" type="text"  placeholder="توضیحات بیشتر(اختیاری)" th:field="*{moreExplain}"></div>
+                    </div>
+                    <div class="card-footer">
+                        <button data-target="#show" data-toggle="collapse" type="submit" class="btn btn-success form-group"style="width: 150px;text-align: center">ثبت درخواست</button>
+                    </div>
+                </div>
+            </form>
+            <div class="alert alert-warning alert-dismissible fade show collapse mt-2 ">
+
+                <button type="button" class="close colapse" data-dismiss="alert"id="show">&times;</button>
+
+                <div th:if="${request}=='درخواست شما توسط مدیر محترم بررسی خواهد شد'">
+                    <h6 class="text-success" th:text="${request}"></h6>
+                </div>
+                <div th:if="${request}=='تعداد روزهای درخواستی شما بیش از حدمجازاست!'">
+                    <h6 class="text-danger" th:text="${request}"></h6>
+                </div>
+
+            </div>
+            <div class="table-responsive mx-auto">
+            <table class="table  mt-3 table-hover table-striped " align="center"style="width: 450px;margin-top: 50px;" >
+
+                <thead class="thead-dark "style="text-align: center">
+                <tr class="table-warning">
+                    <th>مرخصی های استفاده شده</th>
+                    <th>مرخصی های مانده</th>
+                </tr>
+                </thead>
+                <tbody th:object="${leaveInfo}">
+                <tr class="table-info"style="height: 50px; ">
+                    <th style="text-align: center" th:text="*{usedFree}"></th>
+                    <th style="text-align: center" th:text="*{remainOfFree}"></th>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3"align="right" >
+        <div  class="list-group list-group-primary"style=" width: 140px;">
+            <a class=" btn list-group-item list-group-item-success action text-dark" style="direction: ltr" th:href="@{/clock}">ثبت حضور</a>
+            <a class="btn list-group-item list-group-item-success action active text-dark"  style="direction: rtl"th:href="@{/leave}">درخواست مرخصی</a>
+            <a class="btn list-group-item list-group-item-success action  text-dark"  style="direction: rtl"th:href="@{/edit}">ویرایش اطلاعات</a>
+            <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/index}">خروج</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

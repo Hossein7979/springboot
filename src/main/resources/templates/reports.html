@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="mt-5" align="center">
+    <h4 class="text-danger" >گزارشات دریافتی</h4>
+</div>
+<div class="container ">
+    <div align="center "style="margin-top: 20px;">
+        <div class="table-responsive">
+        <table class="table table-responsive table-hover table-striped " >
+
+            <thead class="thead-dark">
+            <tr class="table-warning">
+                <th style="text-align: center">نام و نام خانوادگی</th>
+                <th style="text-align: center">نام کاربری</th>
+                <th style="text-align: center">شماره کارمندی</th>
+                <th style="text-align: center">اخرین زمان ورود</th>
+                <th style="text-align: center">آخرین زمان خروج</th>
+                <th style="text-align: center">گزارش</th>
+                <th style="text-align: center">عملیات</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr class="table-info" th:each="employee:${persons}">
+                <div th:if="${employee.isRequestOfFRee()}==true">
+                    <td  th:text="${employee.name}"></td>
+                    <td th:text="${employee.username}"></th>
+                    <td th:text="${employee.employeeCode}"></td>
+                    <td th:text="${employee.lastSeen}"></td>
+                    <td th:text="${employee.lastTimeOfExit}"></td>
+                    <td th:text="${employee.report}"></td>
+                    <td><a th:href="@{/report/{id}(id=${employee.id})}" class="btn btn-success">عملیات</a></td>
+                </div>
+
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+    <div style="margin-left: 550px;" align="center"class="mt-4">
+        <ul class="pagination mb-3"align="center">
+            <li class="page-item"><a class="page-link" href="/manager">صفحه ورود</a></li>
+            <li class="page-item"><a class="page-link disabled"  href="#">1</a></li>
+
+        </ul>
+    </div>
+
+</body>
+</html>

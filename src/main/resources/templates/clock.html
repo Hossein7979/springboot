@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div >
+    <div class="row">
+        <div class="col-lg-9">
+            <div align="center">
+                <h2 class="text-primary mt-3">ثبت حضور</h2>
+                <form method="post"  th:object="${employeeInfo}" th:action="@{/clock}"style="margin-left: 10px;width: 600px;">
+                    <div   class="card mt-4">
+                        <div class="card-header form-group">
+                            <img th:src="@{/clockify.png}">
+                        </div>
+                        <div class="card-body">
+                            <input th:field="*{employeeCode}" class="text-danger" type="number" placeholder="شماره کارمندی" required></div>
+                    </div>
+                    <div class="card-footer">
+                        <button  type="submit"data-target="#showTable" data-toggle="collapse" class=" form-group btn btn-success"style="width: 100px;text-align: center">ثبت</button>
+                    </div>
+                </form>
+                <br>
+                <div  th:if="${message}=='حضورشماباموفقیت ثبت گردید.'" class="text-success" th:text="${message}"></div>
+                <div th:if="${message}=='شما برای امروزثبت حضورانجام داده اید!'" class="text-danger" th:text="${message}"></div>
+                <div th:if="${message}=='شماره کارمندی اشتباه است!'"class="text-danger" th:text="${message}"></div>
+                <div class="table-responsive mt-5  mx-auto "id="showTable"align="center"style="width: 200px;">
+                    <table class="table table-hover table-striped " align="center" >
+
+                        <thead class="thead-dark "style="text-align: center"><!--color of head row-->
+                        <tr class="table-warning"><!--color satr-->
+                            <th>تعدادروزهای کارکرده</th>
+
+                        </tr>
+                        </thead>
+                        <tbody ><!--th:object="${days}"-->
+                        <tr class="table-info"style="height: 50px;">
+                            <th style="text-align: center" th:text="${days}"></th>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"align="right" >
+            <div  class="list-group list-group-primary"style=" width: 140px;">
+                <a class=" btn list-group-item list-group-item-success action active text-dark" style="direction: ltr" th:href="@{/clock}">ثبت حضور</a>
+                <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/leave}">درخواست مرخصی</a>
+                <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/edit}">ویرایش اطلاعات</a>
+                <a class="btn list-group-item list-group-item-success action text-dark"  style="direction: rtl"th:href="@{/index}">خروج</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+
+</script>
+</body>
+</html>

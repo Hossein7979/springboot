@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h5 align="center"class="text-info mt-2">رسیدگی به گزارشات کارمند</h5>
+<hr>
+<div class="container">
+    <div class="mt-5" align="center">
+        <form  method="post" th:object="${employeeInformations}"style="width: 500px;"th:action="@{/report/post}" >
+            <div   class="card ">
+                <div class="card-header form-group">
+                    <h4 text-success th:text="*{name}" align="center"></h4>
+                </div>
+                <div class="card-body">
+                    <h6 class="text-primary">:تعداد روزهای کارکرده</h6>
+                        <p class="mx-auto" form-controller th:text="*{countOfWork}"></p>
+                    <div >
+                        <h6 class="text-primary">:نوع مرخصی</h6>
+                        <p class="mx-auto" form-controller th:text="*{typeOfRequest}"></p>
+                        <h6 class="text-primary">:توضیحات بیشتر</h6>
+                        <p class="mx-auto" form-controller th:text="*{moreExplain}"></p>
+                        <h6 class="text-primary">:تعداد روزهای درخواستی برای مرخصی</h6>
+                        <p class="mx-auto" form-controller th:text="*{daysOfRequestedFree}"></p>
+                        <h6 class="text-primary">:تعدادمرخصی های استفاده شده</h6>
+                        <p class="mx-auto" form-controller th:text="*{usedFree}"></p>
+                        <h6 class="text-primary">:تعداد روزهای مانده ازمرخصی</h6>
+                        <p class="mx-auto" form-controller th:text="*{remainOfFree}"></p>
+                    </div>
+
+            </div>
+            <div  class="card-footer">
+                <h5 class="text-warning">:اجازه مرخصی برای این کارمند</h5>
+
+                    <button type="submit"  class=" form-group btn text-success" >داده شود</button>
+            </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div align="center">
+    <h5 th:text="${success_message}"></h5>
+</div>
+
+</body>
+</html>
